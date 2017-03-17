@@ -1,0 +1,32 @@
+.switch {
+    border: 2px solid #ccc;
+    width: 40px;
+    height: 20px;
+    border-radius: 20px;
+    cursor: pointer;
+
+}
+
+.switch-toggle {
+    border: 2px solid #ccc;
+    box-shadow: 1px 1px 1px #ccc;
+    width: 16px;
+    height: 16px;
+    left: -1px;
+    border-radius: 25px;
+    background: white;
+    position: relative;
+    transition: left .2s ease-in-out;
+}
+
+.switch.on {
+    background: #007681;
+}
+
+.switch.on .switch-toggle {
+    left: 22px;
+}
+
+.switch.disabled {
+    cursor: not-allowed;
+}
