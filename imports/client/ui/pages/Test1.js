@@ -29,7 +29,7 @@ function leaveAnim(utils) {
 }
 
 
-class Test2 extends Component {
+class Test1 extends Component {
   componentWillEnter (callback) {
     const el = this.container;
     TweenMax.fromTo(el, 0.3, {y: 100, opacity: 0}, {y: 0, opacity: 1, onComplete: callback});
@@ -43,8 +43,8 @@ class Test2 extends Component {
   render() {
 
     return (
-      <div ref={c => this.container = c} style={{position: 'absolute',width: '500px', height:'500px',background: 'red'}}></div>
+      <div ref={c => this.container = c} style={{position: 'absolute',width: '500px', height:'500px',background: 'blue'}}></div>
     )
   }
 }
-export default GSAP()(Test2)
+export default Test1

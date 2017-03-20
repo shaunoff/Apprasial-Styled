@@ -38,7 +38,7 @@ render() {
 
             <img style={{marginLeft: "15px", width: '25px'}} src="/icons/target.svg"/>
 
-          <div style={{marginLeft:"10px", fontWeight: "500"}}><Link style={{ fontSize: "16px",textDecoration: 'none',color: "#585858 " }} to='/new'>Targets</Link></div>
+          <div style={{marginLeft:"10px", fontWeight: "500"}}><Link style={{ fontSize: "16px",textDecoration: 'none',color: "#585858 " }} to='/test2'>Targets</Link></div>
          </div>
 
          <div style={{borderLeft: "12px solid #f8fafb",display: 'flex', marginTop: '15px', marginBottom: '15px', flexDirection: 'row', width: '160px',height: '40px', alignItems: 'center'}}>
@@ -51,7 +51,7 @@ render() {
 
             <img style={{marginLeft: "15px", width: '25px'}} src="/icons/admin.svg"/>
 
-          <div style={{marginLeft:"10px", fontWeight: "500"}}><Link style={{ fontSize: "16px",textDecoration: 'none',color: "#585858 " }} to='/new'>Admin</Link></div>
+          <div style={{marginLeft:"10px", fontWeight: "500"}}><Link style={{ fontSize: "16px",textDecoration: 'none',color: "#585858 " }} to='/users'>Admin</Link></div>
          </div>
        </div>
 

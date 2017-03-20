@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {browserHistory} from 'react-router';
 import {createContainer} from 'meteor/react-meteor-data'
+import {TweenMax, Power2, TimelineMax} from "gsap";
 import Radium from 'radium'
 import TablePage from '../components/table/TablePage.js'
 import moment from 'moment';
@@ -119,7 +120,17 @@ class Users extends React.Component {
     );
 
   }
+  componentWillEnter (callback) {
+    console.log("ghjghjkghjkgfd")
+    const el = this.usersWrapper;
+    TweenMax.from(el, 3, {opacity: 0, onComplete: callback});
+  }
 
+  componentWillLeave(callback) {
+    const el = this.usersWrapper;
+    TweenMax.to(el, 3, {opacity: 0, onComplete: callback});
+
+    }
   render() {
     const styles={
       even: {
@@ -196,7 +207,7 @@ class Users extends React.Component {
       let clickedUser = this.state.editUser ? users.filter((user)=>{return user._id == this.state.editUser})[0] : null
 
       return (
-        <div>
+        <div >
           <div style={{margin:'15px', border: "2px solid #ccc", borderRadius: '8px', padding: '0px 15px 5px 15px'}}>
             <input onChange={this.testSearch.bind(this)}/>
           </div>

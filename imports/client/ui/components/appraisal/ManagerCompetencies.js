@@ -48,18 +48,48 @@ disableButton() {
         canSubmit: false
       });
     }
+componentWillEnter (callback) {
+      console.log("manComp triggered")
+      const el = this.manCompWrapper;
+      let tl = new TimelineMax();
+      tl
+      .fromTo(el, 1, {y: 500,opacity: 0,scale: 0.6},{y:0,opacity: 0.8,scale: 0.6},0.6)
+      .to(el, 0.4, {
+        scale: 1,
+        opacity: 1,
+        onComplete: callback,
+      })
+
+    }
+
+    componentWillLeave(callback) {
+      console.log("manComp triggered")
+      const el = this.manCompWrapper;
+      let tl = new TimelineMax();
+      tl
+        .to(el, 0.5, {
+          scale: 0.6,
+          opacity: 0.8
+        })
+        .to(el, 1, {
+          opacity: 0,
+          y: -500,
+
+          onComplete: callback,
+        },0.6)
+      }
 render(){
   const {currentAppraisal = {}} = this.props.targetUser
   const {competencies = {}} = currentAppraisal
   const {employee = {}, manager ={}} = competencies
   const {managerAccess} = this.props
   let {stage} = this.props
-  
+
   return(
 
-    <div style={{display: 'flex', flexDirection: 'column',margin: '15px',flex: '3', display: 'flex',border: "2px solid #ccc", borderRadius: '8px',background: "white"}}>
+    <div ref={(ref) => {this.manCompWrapper = ref}} style={{position:  'absolute', display: 'flex', overflow: 'scroll',height: "calc(100vh - 95px)",flexDirection: 'column',margin: '15px',width: "calc(100vw - 380px)", display: 'flex',border: "2px solid #ccc", borderRadius: '8px',background: "white"}}>
         <div style={{fontSize: "18px", fontWeight: '700', color: '#6bada7',padding:"10px"}}>
-          Self-Assessment: Competencies
+          Manager Assessment: Competencies
         </div>
         <Formsy.Form ref="form" onValidSubmit={this.handleSubmit.bind(this,this.props.targetUser._id)} onValid={this.enableButton.bind(this)} onInvalid={this.disableButton.bind(this)}>
 

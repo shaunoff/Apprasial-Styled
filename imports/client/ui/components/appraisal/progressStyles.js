@@ -2,7 +2,7 @@ export let progressStyles = {
   progressContainer: {
     maxWidth: '220px',
     flex:'1',
-    minHeight: '720px',
+    height: "calc(100vh - 95px)",
     margin: '15px 0px 15px 15px',
     display: 'flex',
     flexDirection: 'column',

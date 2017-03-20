@@ -13,11 +13,13 @@ import Targets from '../components/appraisal/Targets.js'
 import Questions from '../components/appraisal/Questions.js'
 import Summary from '../components/appraisal/Summary.js'
 import Progress from '../components/appraisal/Progress.js'
+import Progress2 from '../components/appraisal/Progress2.js'
 import InProgress from '../components/appraisal/InProgress.js'
 import Review from '../components/appraisal/Review.js'
 import ManagerReview from '../components/appraisal/ManagerReview.js'
 import PresidentReview from '../components/appraisal/PresidentReview.js'
 import Notifications from '../../../api/notifications/notifications';
+import ReactTransitionGroup from 'react-addons-transition-group'
 
 
 import Test2 from './Test2.js'
@@ -36,13 +38,13 @@ stageNumber(managerAccess,user) {
                    case 0:
                      return <div>Loading...</div>;
                    case 1:
-                    return <Competencies targetUser={this.props.targetUser[0]} managerAccess={managerAccess} advance={this.advance.bind(this)}/>;
+                    return <Competencies key="competencies" targetUser={this.props.targetUser[0]} managerAccess={managerAccess} advance={this.advance.bind(this)}/>;
                    case 2:
-                    return <Achievements targetUser={this.props.targetUser[0]} managerAccess={managerAccess} previous={this.previous.bind(this)} advance={this.advance.bind(this)}/>;
+                    return <Achievements key="achievements" targetUser={this.props.targetUser[0]} managerAccess={managerAccess} previous={this.previous.bind(this)} advance={this.advance.bind(this)}/>;
                    case 3:
-                    return <Summary targetUser={this.props.targetUser[0]} previous={this.previous.bind(this)} advance={this.advance.bind(this)}/>;
+                    return <Summary key="summary" targetUser={this.props.targetUser[0]} previous={this.previous.bind(this)} advance={this.advance.bind(this)}/>;
                    case 4:
-                    return <ManagerCompetencies stage={this.state.stage} targetUser={this.props.targetUser[0]} managerAccess={managerAccess} user={user} advance={this.advance.bind(this)}/>;
+                    return <ManagerCompetencies key="manCompetencies" stage={this.state.stage} targetUser={this.props.targetUser[0]} managerAccess={managerAccess} user={user} advance={this.advance.bind(this)}/>;
                    case 5:
                     return <ManagerAchievements stage={this.state.stage} targetUser={this.props.targetUser[0]} managerAccess={managerAccess} user={user} previous={this.previous.bind(this)} advance={this.advance.bind(this)}/>;
                    case 6:
@@ -137,20 +139,21 @@ render(){
     }
 
   return(
-      <div>
-      <div style={{display: 'flex',flexDirection: 'row'}}>
-      <Progress stage={targetUser.stage} targetUser={targetUser}/>
+
+      <div style={{height: "calc(100vh - 62px)",display: 'flex',flexDirection: 'row',overflow: 'hidden'}}>
+      <Progress2 stage={targetUser.stage} targetUser={targetUser}/>
 
       {/*<Test2 element={this.state.stage}>
       {this.state.stage == 1 ? <Competencies advance={this.advance.bind(this)}/> : this.state.stage ==  2 ? <Questions previous={this.previous.bind(this)} advance={this.advance.bind(this)}/> : <Summary/>}
       </Test2>*/}
-      <Test2 element={this.state.stage}>
 
+      <ReactTransitionGroup>
       {this.stageNumber(managerAccess,targetUser)}
+      </ReactTransitionGroup>
       {/*{this.state.stage == 1 ? <ManagerCompetencies managerAccess={managerAccess} user={user} advance={this.advance.bind(this)}/> : this.state.stage ==  2 ? <ManagerQuestions managerAccess={managerAccess} user={user} previous={this.previous.bind(this)} advance={this.advance.bind(this)}/> : <ManagerSummary user={user} previous={this.previous.bind(this)}/>}*/}
-      </Test2>
+
       </div>
-      </div>
+
 
   )
 }

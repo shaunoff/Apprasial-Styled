@@ -39,16 +39,42 @@ disableButton() {
             canSubmit: false
           });
 }
+componentWillEnter (callback) {
+  const el = this.compWrapper;
+  let tl = new TimelineMax();
+  tl
+  .fromTo(el, 1, {y: 500,opacity: 0,scale: 0.6},{y:0,opacity: 0.8,scale: 0.6},0.6)
+  .to(el, 0.4, {
+    scale: 1,
+    opacity: 1,
+    onComplete: callback,
+  })
 
+}
+
+componentWillLeave(callback) {
+  const el = this.compWrapper;
+  let tl = new TimelineMax();
+  tl
+    .to(el, 0.5, {
+      scale: 0.6,
+      opacity: 0.8
+    })
+    .to(el, 1, {
+      opacity: 0,
+      y: -500,
+
+      onComplete: callback,
+    },0.6)
+  }
 render(){
-  console.log('render')
   const {currentAppraisal = {}} = this.props.targetUser
   const {competencies = {}} = currentAppraisal
   const {employee = {}} = competencies
   const {managerAccess} = this.props
   return(
 
-    <div style={{display: 'flex', flexDirection: 'column',margin: '15px',flex: '3', display: 'flex',border: "2px solid #ccc", borderRadius: '8px',background: "white"}}>
+    <div ref={(ref) => {this.compWrapper = ref}} style={{position:  'absolute', display: 'flex', overflow: 'scroll',height: "calc(100vh - 95px)",flexDirection: 'column',margin: '15px',width: "calc(100vw - 380px)", display: 'flex',border: "2px solid #ccc", borderRadius: '8px',background: "white"}}>
         <div style={{fontSize: "18px", fontWeight: '700', color: '#6bada7',padding:"10px"}}>
           Self-Assessment: Competencies
         </div>
