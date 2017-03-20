@@ -46,9 +46,9 @@ stageNumber(managerAccess,user) {
                    case 4:
                     return <ManagerCompetencies key="manCompetencies" stage={this.state.stage} targetUser={this.props.targetUser[0]} managerAccess={managerAccess} user={user} advance={this.advance.bind(this)}/>;
                    case 5:
-                    return <ManagerAchievements stage={this.state.stage} targetUser={this.props.targetUser[0]} managerAccess={managerAccess} user={user} previous={this.previous.bind(this)} advance={this.advance.bind(this)}/>;
+                    return <ManagerAchievements key="manAchievements" stage={this.state.stage} targetUser={this.props.targetUser[0]} managerAccess={managerAccess} user={user} previous={this.previous.bind(this)} advance={this.advance.bind(this)}/>;
                    case 6:
-                    return <ManagerSummary stage={this.state.stage} targetUser={this.props.targetUser[0]} managerAccess={managerAccess} previous={this.previous.bind(this)}/>;
+                    return <ManagerSummary key="manSummary" stage={this.state.stage} targetUser={this.props.targetUser[0]} managerAccess={managerAccess} previous={this.previous.bind(this)}/>;
                    case 7:
                     return <Review stage={this.state.stage}  advance={this.advance.bind(this)} managerAccess={managerAccess} targetUser={this.props.targetUser[0]}/>;
                    case 8:
