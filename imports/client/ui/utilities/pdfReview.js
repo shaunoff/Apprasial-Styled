@@ -143,7 +143,7 @@ function summaryCont(empComment,manComment,height,empRating,manRating) {
   doc.setFillColor(250, 250, 250);
   doc.roundedRect(10, height+17, 193, 31, 3, 3, 'FD');
   doc.setTextColor(107,173,167).setFontSize(10).setFontType('bold')
-  doc.text(`${firstName}: wrote`, 12, height+21)
+  doc.text(`${firstName} wrote:`, 12, height+21)
   doc.setTextColor(80, 80, 80).setFontSize(10).setFontType('normal')
   let empLines = doc.splitTextToSize(empComment, 190);
   doc.text(empLines, 12, height+25)

@@ -13,7 +13,7 @@ const styles = {
     borderRadius: '4px',
     border: '0px',
     color: 'white',
-    marginLeft: '10px',
+    margin: '10px',
     padding: '5px 15px 5px 15px',
     ':hover': {
       animation: 'x 0.8s ease',
@@ -45,7 +45,8 @@ class Button extends React.Component {
         style={[
           styles.base,
           this.props.block && styles.block,
-          this.props.customStyle ? {background: this.props.customStyle} : ""
+          this.props.customStyle ? {background: this.props.customStyle} : "",
+
         ]}>
         {this.props.children}
       </button>

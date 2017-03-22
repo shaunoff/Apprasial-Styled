@@ -98,7 +98,7 @@ render(){
       if (stage > 3 && stage < 7) {
           return <InProgress stage={stage} note="Current user cant access. At managers phase" text="Your Appraisal is in progress!"/>
         }
-      if (stage > 8 && stage < 11) {
+      if (stage > 8 && stage < 10) {
             return <InProgress stage={stage} note="Current user cant access. At managers phase" text="Your Appraisal is in progress!"/>
           }
     }
