@@ -21,7 +21,9 @@ function firstAnimation(args){
   .to(bottomSand, 1.5, {opacity: 1, ease: Power1.easeIn},2.5)
   .to(hourGlass, 1, {rotation: '+=180', ease: Power1.easeInOut,onComplete: onComplete},4)
   .add("endTest")
-
+  var onComplete = () =>{
+    tl("startTest","endTest")
+  }
 
 
 }

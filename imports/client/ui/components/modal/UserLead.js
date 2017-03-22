@@ -13,12 +13,14 @@ class UserLead extends Component {
     }
   }
   assignLead(lead,index){
+
     if (index == this.state.indexChecked) {
       this.setState({
         checked: false,
         indexChecked: null
       })
-      Meteor.call('assignLead', null, this.props.user)
+      
+      Meteor.call('assignLead', null, this.props.user._id)
     }
     else {
       this.setState({
@@ -34,6 +36,7 @@ class UserLead extends Component {
   render() {
 
     const {user,leads} = this.props
+
     const styles = {
       managerWrapper: {
         display: 'flex',
@@ -68,6 +71,7 @@ class UserLead extends Component {
 
         <div style={{display: 'flex',flexWrap: 'wrap'}}>
           {leads.map((lead,index)=>{
+
             return (
             <div key={index} style={[styles.managerWrapper]}>
               <div style={[styles.circle]}>
@@ -80,7 +84,7 @@ class UserLead extends Component {
               </div>
 
               <div style={{fontSize: "16px", fontWeight: '700', color: '#D93A32',padding:"10px"}}>
-                <Checkbox disabled={this.state.indexChecked == index ? false : this.state.checked ? true : false} onCheck={this.assignLead.bind(this,lead._id,index)}/>
+                <Checkbox disabled={this.state.indexChecked == index ? false : this.state.checked ? true : false} onCheck={this.assignLead.bind(this,lead,index)}/>
               </div>
             </div>
           )

@@ -29,13 +29,16 @@ handleClick(id){
 render(){
   const styles={
     wrapper: {
-      display: 'flex',
-      flexDirection: 'column',
-      margin: '15px',flex: '3',
-      display: 'flex',
-      border: "2px solid #ccc",
-      borderRadius: '8px',
-      background: "white"
+      position:  'absolute',
+       display: 'flex',
+
+       height: "calc(100vh - 95px)",
+       flexDirection: 'column',
+       margin: '15px',
+       width: "calc(100vw - 380px)",
+       border: "2px solid #ccc",
+       borderRadius: '8px',
+       background: "white"
     },
     inkBar: {
       background: "#007681",
@@ -55,7 +58,8 @@ render(){
       fontSize: '18px',
       fontWeight: 'bold',
       fontFamily: "Quicksand",
-      textTransform: 'capitalize'
+      textTransform: 'capitalize',
+      overflow: 'hidden'
     }
 
   }
@@ -63,7 +67,7 @@ render(){
 
   return(
     <div style={styles.wrapper}>
-      <Tabs  inkBarStyle={styles.inkBar} tabItemContainerStyle={styles.tabItem}>
+      <Tabs  contentContainerStyle={{overflow: 'hidden'}}inkBarStyle={styles.inkBar} tabItemContainerStyle={styles.tabItem}>
         <Tab style={styles.tabText} label="Competencies" >
           <ManagerCompetencies stage={this.props.stage} targetUser={this.props.targetUser}/>
         </Tab>
@@ -75,6 +79,10 @@ render(){
 
         </Tab>
       </Tabs>
+      <div style={{display: 'flex',margin: '10px'}}>
+      <div style={{flex: '1'}}></div>
+      <Button type="button" click={this.handleClick.bind(this,this.props.targetUser._id)}>Next</Button>
+      </div>
       <div style={{display: 'flex',margin: '10px'}}>
       <div style={{flex: '1'}}></div>
       <Button type="button" click={this.handleClick.bind(this,this.props.targetUser._id)}>Next</Button>

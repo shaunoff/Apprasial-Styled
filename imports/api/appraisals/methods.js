@@ -21,11 +21,13 @@ Meteor.methods({
     });
 
   },
-  assignLead(leadId,userId){
+  assignLead(lead,userId){
+    console.log("appraisals")
     Meteor.users.update({_id: userId},
     {$set:{
-        'profile.lead': leadId,
-        'currentAppraisal.lead': leadId,
+        'profile.lead': lead._id,
+        'currentAppraisal.lead': lead._id,
+        'currentAppraisal.leadName': lead.profile.firstName,
 
       }
 

@@ -18,7 +18,7 @@ class UserManager extends Component {
         checked: false,
         indexChecked: null
       })
-      Meteor.call('assignManager', null, this.props.user)
+      Meteor.call('assignManager', null, this.props.user._id)
     }
     else {
       this.setState({
@@ -80,7 +80,7 @@ class UserManager extends Component {
               </div>
 
               <div style={{fontSize: "16px", fontWeight: '700', color: '#D93A32',padding:"10px"}}>
-                <Checkbox disabled={this.state.indexChecked == index ? false : this.state.checked ? true : false} onCheck={this.assignManager.bind(this,manager._id,index)}/>
+                <Checkbox disabled={this.state.indexChecked == index ? false : this.state.checked ? true : false} onCheck={this.assignManager.bind(this,manager,index)}/>
               </div>
             </div>
           )

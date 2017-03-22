@@ -104,8 +104,8 @@ render(){
         <DummyComment value={employee.commComment} rows={4} name="commComment" validations="isExisty" required/>
         </div>
         <div style={{flex: '1', display: 'flex', flexDirection: 'column'}}>
-        {React.createElement(managerAccess ? Rating : DummyRating,{name: "manCommRating", value: manager.manCommRating, validations:"isExisty", required: true})}
-        {React.createElement(managerAccess ? Comment : DummyComment,{name: "manCommComment", value: manager.manCommComment, validations:"isExisty", required: true})}
+        {React.createElement(managerAccess ? Rating : DummyRating,{name: "commRating", value: manager.commRating, validations:"isExisty", required: true})}
+        {React.createElement(managerAccess ? Comment : DummyComment,{name: "commComment", value: manager.commComment, validations:"isExisty", required: true})}
 
         </div>
         </div>
@@ -121,8 +121,8 @@ render(){
       <DummyComment value={employee.coopComment} rows={4} name="coopComment" validations="isExisty" required/>
       </div>
       <div style={{flex: '1', display: 'flex', flexDirection: 'column'}}>
-        {React.createElement(managerAccess ? Rating : DummyRating,{name: "manCoopRating", value: manager.manCoopRating, validations:"isExisty", required: true})}
-        {React.createElement(managerAccess ? Comment : DummyComment,{name: "manCoopComment", value: manager.manCoopComment, validations:"isExisty", required: true})}
+        {React.createElement(managerAccess ? Rating : DummyRating,{name: "coopRating", value: manager.coopRating, validations:"isExisty", required: true})}
+        {React.createElement(managerAccess ? Comment : DummyComment,{name: "coopComment", value: manager.coopComment, validations:"isExisty", required: true})}
 
       </div>
       </div>
@@ -138,8 +138,8 @@ render(){
     <DummyComment value={employee.judgeComment} rows={4} name="judgeComment" validations="isExisty" required/>
     </div>
     <div style={{flex: '1', display: 'flex', flexDirection: 'column'}}>
-      {React.createElement(managerAccess ? Rating : DummyRating,{name: "manJudgeRating", value: manager.manJudgeRating, validations:"isExisty", required: true})}
-      {React.createElement(managerAccess ? Comment : DummyComment,{name: "manJudgeComment", value: manager.manJudgeComment, validations:"isExisty", required: true})}
+      {React.createElement(managerAccess ? Rating : DummyRating,{name: "judgeRating", value: manager.judgeRating, validations:"isExisty", required: true})}
+      {React.createElement(managerAccess ? Comment : DummyComment,{name: "judgeComment", value: manager.judgeComment, validations:"isExisty", required: true})}
 
     </div>
     </div>
@@ -156,8 +156,8 @@ render(){
     <DummyComment value={employee.timeComment} rows={4} name="timeComment" validations="isExisty" required/>
     </div>
     <div style={{flex: '1', display: 'flex', flexDirection: 'column'}}>
-      {React.createElement(managerAccess ? Rating : DummyRating,{name: "manTimeRating", value: manager.manTimeRating, validations:"isExisty", required: true})}
-      {React.createElement(managerAccess ? Comment : DummyComment,{name: "manTimeComment", value: manager.manTimeComment, validations:"isExisty", required: true})}
+      {React.createElement(managerAccess ? Rating : DummyRating,{name: "timeRating", value: manager.timeRating, validations:"isExisty", required: true})}
+      {React.createElement(managerAccess ? Comment : DummyComment,{name: "timeComment", value: manager.timeComment, validations:"isExisty", required: true})}
 
     </div>
     </div>

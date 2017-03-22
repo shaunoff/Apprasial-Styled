@@ -14,8 +14,10 @@ import Questions from '../components/appraisal/Questions.js'
 import Summary from '../components/appraisal/Summary.js'
 import Progress from '../components/appraisal/Progress.js'
 import Progress2 from '../components/appraisal/Progress2.js'
+import Progress2Manager from '../components/appraisal/Progress2Manager.js'
+import ProgressReview from '../components/appraisal/ProgressReview.js'
 import InProgress from '../components/appraisal/InProgress.js'
-import Review from '../components/appraisal/Review.js'
+import Review2 from '../components/appraisal/Review2.js'
 import ManagerReview from '../components/appraisal/ManagerReview.js'
 import PresidentReview from '../components/appraisal/PresidentReview.js'
 import Notifications from '../../../api/notifications/notifications';
@@ -50,7 +52,7 @@ stageNumber(managerAccess,user) {
                    case 6:
                     return <ManagerSummary key="manSummary" stage={this.state.stage} targetUser={this.props.targetUser[0]} managerAccess={managerAccess} previous={this.previous.bind(this)}/>;
                    case 7:
-                    return <Review stage={this.state.stage}  advance={this.advance.bind(this)} managerAccess={managerAccess} targetUser={this.props.targetUser[0]}/>;
+                    return <Review2 stage={this.state.stage}  advance={this.advance.bind(this)} managerAccess={managerAccess} targetUser={this.props.targetUser[0]}/>;
                    case 8:
                      return <Targets stage={this.state.stage} targetUser={this.props.targetUser[0]} advance={this.advance.bind(this)} previous={this.previous.bind(this)}/>;
                    case 9:
@@ -141,8 +143,14 @@ render(){
   return(
 
       <div style={{height: "calc(100vh - 62px)",display: 'flex',flexDirection: 'row',overflow: 'hidden'}}>
+      {targetUser.stage < 4 ?
       <Progress2 stage={targetUser.stage} targetUser={targetUser}/>
-
+      :
+      targetUser.stage == 7 || targetUser.stage == 8 ?
+      <ProgressReview stage={targetUser.stage} targetUser={targetUser}/>
+      :
+      <Progress2Manager stage={targetUser.stage} targetUser={targetUser}/>
+      }
       {/*<Test2 element={this.state.stage}>
       {this.state.stage == 1 ? <Competencies advance={this.advance.bind(this)}/> : this.state.stage ==  2 ? <Questions previous={this.previous.bind(this)} advance={this.advance.bind(this)}/> : <Summary/>}
       </Test2>*/}

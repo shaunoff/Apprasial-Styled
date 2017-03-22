@@ -20,26 +20,58 @@ Meteor.methods({
   removeRole(role,userId) {
    Roles.removeUsersFromRoles(userId, role);
   },
-  assignManager(managerId,userId){
-    Meteor.users.update({_id: userId},
-    {$set:{
-        'profile.manager': managerId,
-        'currentAppraisal.manager': managerId,
 
-      }
+  assignManager(manager,userId){
+    if (manager === null){
+      Meteor.users.update({_id: userId},
+      {$set:{
+          'profile.manager':  null,
+          'currentAppraisal.manager': null,
+          'currentAppraisal.managerFirstName':  null,
+          'currentAppraisal.managerlastName':  null,
+        }
 
-    });
+      });
+    }
+    else {
+      Meteor.users.update({_id: userId},
+      {$set:{
+          'profile.manager': manager._id || null,
+          'currentAppraisal.manager': manager._id || null,
+          'currentAppraisal.managerFirstName': manager.profile.firstName ?  manager.profile.firstName : null,
+          'currentAppraisal.managerLastName': manager.profile.lastName ?  manager.profile.lastName : null,
+        }
+
+      });
+    }
+
 
   },
-  assignLead(leadId,userId){
-    Meteor.users.update({_id: userId},
-    {$set:{
-        'profile.lead': leadId,
-        'currentAppraisal.lead': leadId,
+  assignLead(lead,userId){
+    if (lead === null) {
+      Meteor.users.update({_id: userId},
+      {$set:{
+        'profile.lead': null,
+        'currentAppraisal.lead': null,
+        'currentAppraisal.leadFirstName':null,
 
-      }
+        }
 
-    });
+      });
+    }
+    else {
+      Meteor.users.update({_id: userId},
+      {$set:{
+        'profile.lead': lead._id || null,
+        'currentAppraisal.lead': lead._id || null,
+        'currentAppraisal.leadFirstName': lead.profile.firstName || null,
+        'currentAppraisal.leadLastName': lead.profile.lastName || null,
+
+        }
+
+      });
+    }
+
 
   },
   insertCompetencies(data, id) {
@@ -158,6 +190,7 @@ Meteor.methods({
   },
   insertTargets(data,id) {
     const user= Meteor.user()
+    const stageJump = user.currentAppraisal.lead === null ? 10 : 9
     Notifications.insert({
       targetUser: id,
       completedUser: user._id,
@@ -168,7 +201,7 @@ Meteor.methods({
     Meteor.users.upsert(id,
     {$set:{
         'currentAppraisal.targets': data,
-         stage: 9
+         stage: stageJump
 
 
       }
