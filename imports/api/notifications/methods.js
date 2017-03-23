@@ -212,7 +212,7 @@ Meteor.methods({
 
     Meteor.users.upsert(id,
     {$set:{
-        'currentAppraisal.comments.manager': data.manager,
+        'currentAppraisal.comments.manager': data.managerComment,
          stage: 10
 
 
@@ -224,8 +224,8 @@ Meteor.methods({
 
     Meteor.users.upsert(id,
     {$set:{
-        'currentAppraisal.comments.president': data.president,
-         stage: 10
+        'currentAppraisal.comments.president': data.presidentComment,
+         stage: 11
 
 
       }
