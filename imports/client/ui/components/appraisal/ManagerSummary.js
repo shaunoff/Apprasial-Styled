@@ -155,7 +155,7 @@ render(){
     <div style={{display: 'flex',margin: '10px'}}>
     <Button type="button" click={this.previous.bind(this)}>Previous</Button>
     <div style={{flex: '1'}}></div>
-    <Button type="button" click={this.modalOpen.bind(this)}disabled={!this.state.canSubmit}>Submit</Button>
+    <Button type="button" click={this.modalOpen.bind(this)} disabled={!this.state.canSubmit}>Submit</Button>
     </div>
   }
 

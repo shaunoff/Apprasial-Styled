@@ -12,6 +12,10 @@ export default class RecentActivity extends React.Component {
                       return "Completed Manager's Assessment";
                      case 8:
                        return "Completed Targets";
+                     case 9:
+                         return "Completed Senior Manager's Review";
+                      case 10:
+                             return "Completed President's Review";
 
                     }
   }

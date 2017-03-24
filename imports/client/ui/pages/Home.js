@@ -5,6 +5,7 @@ import HomeProgress from '../components/appraisal/HomeProgress.js'
 import HomeProgress2 from '../components/appraisal/HomeProgress2.js'
 import HomePie from '../components/appraisal/HomePie.js'
 import RecentActivity from '../components/appraisal/RecentActivity.js'
+import CompletedAppraisals from '../components/appraisal/CompletedAppraisals.js'
 import { Line, Circle } from 'rc-progress';
 
 const warning = "#fa7606"
@@ -25,7 +26,7 @@ class Home extends Component {
 
     }
 	render(){
-		const {user,notifications} = this.props
+		const {user,notifications,appraisals} = this.props
 		return (
 			<div ref={(ref) => {this.wrapper = ref}} style={{position: 'absolute',width: "calc(100% - 160px)"}}>
 	  		<div  style={{display: 'flex',  flexDirection: "column", flexWrap:'wrap',fontWeight: '700', padding: '15px'}}>
@@ -58,37 +59,11 @@ class Home extends Component {
 	            Completed Appraisals
 
 	          </div>
+						{appraisals.map((appraisal,index)=>{
+							return <CompletedAppraisals key={index} user={user} appraisal={appraisal}/>
+						})}
 
-	          <div style={{display: 'flex', alignItems: 'center', margin: '10px',border: '1px solid #ccc',borderLeft: "6px solid #6bada7", height: '90px'}}>
 
-	            <div style={{fontSize: "16px", fontWeight: '700', color: '#585858',padding:"10px"}}>
-	               2016
-	            </div>
-	            <div style={{flex: '2', display: 'flex', flexDirection: "column", fontSize: "12px", fontWeight: '700', color: '#585858',margin:"10px"}}>
-	                <div>Self Assessment: <span style={{fontWeight: '700', color: "#007681"}}>4.2</span></div>
-	               <Line style={{marginBottom: '10px'}} percent="76" trailWidth="3" strokeWidth="3" strokeColor="#6bada7" />
-	               <div>Manager's Assessment: <span style={{fontWeight: '700', color: "#007681"}}>4.6</span></div>
-	              <Line style={{marginBottom: '10px'}} percent="82" trailWidth="3" strokeWidth="3" strokeColor="#6bada7" />
-	            </div>
-	            <div style={{padding:"10px"}}>
-	              <img style={{ width: '40px'}} src="/icons/pdf.svg"/>
-	            </div>
-	          </div>
-	          <div style={{display: 'flex', alignItems: 'center', margin: '10px',border: '1px solid #ccc',borderLeft: "6px solid #6bada7", height: '80px'}}>
-
-	            <div style={{fontSize: "16px", fontWeight: '700', color: '#585858',padding:"10px"}}>
-	               2015
-	            </div>
-	            <div style={{flex: '2', display: 'flex', flexDirection: "column", fontSize: "12px", fontWeight: '700', color: '#585858',margin:"10px"}}>
-	                <div>Self Assessment: <span style={{fontWeight: '700', color: "#007681"}}>4.6</span></div>
-	               <Line style={{marginBottom: '10px'}} percent="82" trailWidth="3" strokeWidth="3" strokeColor="#6bada7" />
-	               <div>Manager's Assessment: <span style={{fontWeight: '700', color: "#007681"}}>4.1</span></div>
-	              <Line style={{marginBottom: '10px'}} percent="74" trailWidth="3" strokeWidth="3" strokeColor="#6bada7" />
-	            </div>
-	            <div style={{padding:"10px"}}>
-	              <img style={{ width: '40px'}} src="/icons/pdf.svg"/>
-	            </div>
-	          </div>
 
 
 

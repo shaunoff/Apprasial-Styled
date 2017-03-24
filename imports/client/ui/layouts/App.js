@@ -9,6 +9,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Header from '../components/header/Header.js'
 import Sidebar from '../components/sidebar/Sidebar.js'
 import Notifications from '../../../api/notifications/notifications'
+import Appraisals from '../../../api/appraisals/appraisals.js'
 import ReactTransitionGroup from 'react-addons-transition-group'
 
 
@@ -47,7 +48,7 @@ class App extends Component {
                       <Header />
                       <div style={{display: 'flex',flex: '1'}}>
                         <ReactTransitionGroup>
-                          {React.cloneElement(this.props.children, {key: path, user: this.props.currentUser, notifications: this.props.notifications})}
+                          {React.cloneElement(this.props.children, {key: path, user: this.props.currentUser, notifications: this.props.notifications, appraisals: this.props.currentUserAppraisals})}
                         </ReactTransitionGroup>
                       </div>
                     </div>
@@ -63,9 +64,11 @@ const currentId = new ReactiveVar('');
 export default createContainer(({params}) => {
     let notificationsSub = Meteor.subscribe('allNotifications');
     let currentUserSub =  Meteor.subscribe('currentUser');
+    let userAppraisalSub =  Meteor.subscribe('currentUserAppraisals');
     return {
-      subsReady: currentUserSub.ready() && notificationsSub.ready(),
+      subsReady: currentUserSub.ready() && notificationsSub.ready() && userAppraisalSub.ready(),
       currentUser: Meteor.users.findFromPublication('currentUser').fetch(),
+      currentUserAppraisals: Appraisals.findFromPublication('currentUserAppraisals').fetch(),
       notifications: Notifications.find({targetUser: currentId.get()},{sort: {
         'added': -1}}).fetch(),
 

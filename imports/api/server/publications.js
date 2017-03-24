@@ -1,7 +1,9 @@
 import { Meteor } from 'meteor/meteor';
+import Appraisals from '../appraisals/appraisals.js'
 
-
-
+FindFromPublication.publish('currentUserAppraisals', function() {
+  return Appraisals.find({});
+});
 FindFromPublication.publish('allUsers', function(skipAmount, sortValue, direction,searchQuery) {
 
   const sortParam = `profile.${sortValue}`

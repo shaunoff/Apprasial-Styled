@@ -7,6 +7,8 @@ import { browserHistory } from 'react-router';
 import {averageScore} from '../../utilities/averageScore'
 import Button from '../button/Button.js'
 import pdfReview from '../../utilities/pdfReview.js'
+import Dialog from 'material-ui/Dialog'
+import SummaryModalBody from './SummaryModalBody.js'
 
 export default class PresidentReview extends React.Component {
   constructor(){
@@ -14,6 +16,7 @@ export default class PresidentReview extends React.Component {
     this.state={
       checked: false,
       canSubmit: false,
+      modalOpen: false,
       superb: "gfjggdfgfgfgffffgfg fdg shfdgsdfhfgfg fdg shfdgsdfh gsfjd gsfdh gjh fgdsfgsdjgsdjffgfg fdg shfdgsdfh gsfjd gsfdh gjh fgdsfgsdjgsdjf gsfjd gsfdh gjh fgdsfgsdjgsdjfjsdgjgjsgjsdf",
       excellent: "gfjggdfgfgfgffffgfg fdg shfdgfgfg fdg shfdgsdfh gsfjd gsfdh gjh fgdsfgsdjgsdjffgfg fdg shfdgsdfh gsfjd gsfdh gjh fgdsfgsdjgsdjfsdfh gsfjd gsfdh gjh fgdsfgsdjgsdjfjsdgjgjsgjsdf",
       good: "gfjggdfgfgfgffffgfg fdg shfdgsdfh gfg fdg shfdgfgfg fdg shfdgsdfh gsfjd gsfdh gjh fgdsfgsdjgsdjffgfg fdgfg fdg shfdgfgfg fdg shfdgsdfh gsfjd gsfdh gjh fgdsfgsdjgsdjffgfg fdgsfjd gsfdh gjh fgdsfgsdjgsdjfjsdgjgjsgjsdf",
@@ -21,7 +24,12 @@ export default class PresidentReview extends React.Component {
 
       }
     }
-
+    modalOpen(){
+        this.setState({modalOpen: true})
+    }
+    modalClose(){
+        this.setState({modalOpen: false})
+    }
 
 
 
@@ -160,8 +168,21 @@ render(){
       </div>
       <div style={{displpay:'flex'}}>
         <div style={{flex: '1'}}></div>
-      <Button type="button" click={this.handleSubmit.bind(this,this.props.targetUser._id)} disabled={!this.state.canSubmit}>Confirm</Button>
+      <Button type="button" click={this.modalOpen.bind(this)} disabled={!this.state.canSubmit}>Confirm</Button>
     </div>
+    <Dialog
+
+            modal={false}
+            open={this.state.modalOpen}
+            onRequestClose={this.modalClose.bind(this)}
+          >
+            <SummaryModalBody section='Manager/Lead Assessment'/>
+            <div style={{display: 'flex'}}>
+              <div style={{flex: '1'}}></div>
+              <Button type="button" customStyle='#ff7606' click={this.modalClose.bind(this)}>Cancel</Button>
+              <Button type="button" click={this.handleSubmit.bind(this,this.props.targetUser._id)} disabled={!this.state.canSubmit}>Confirm</Button>
+            </div>
+    </Dialog>
     </div>
   )
 }

@@ -70,10 +70,7 @@ previous(){
   this.setState({changing: true,stage: this.state.stage -=1})
 
 }
-noEntry(){
-  this.setState({stage: 2})
 
-}
 componentDidUpdate(){
 
   this.state.stage == 0 ?  this.setState({stage: this.props.targetUser[0].stage}): ""
@@ -93,6 +90,10 @@ render(){
     user = user[0]
     const {stage} = this.state
     //Is targetUser the currentUser?
+    if (Roles.userIsInRole(Meteor.userId(), 'President')){
+      managerAccess = false
+      return <ReactTransitionGroup>{this.stageNumber(managerAccess,targetUser)}</ReactTransitionGroup>
+    }
     if (targetUser._id == user._id) {
       managerAccess = false
       if (stage > 3 && stage < 7) {
@@ -102,6 +103,7 @@ render(){
             return <InProgress stage={stage} note="Current user cant access. At managers phase" text="Your Appraisal is in progress!"/>
           }
     }
+
     //does the targetUser have a lead?
     if (targetUser.profile.lead){
       //Is user the lead?
@@ -120,6 +122,9 @@ render(){
         if (stage < 9 ) {
             return <InProgress stage={stage} note="Manager cant access Still at Lead stage" text={`${targetUser.profile.firstName}'s Appraisal is in progress!`}/>
           }
+          if (stage == 10 ) {
+              return <InProgress stage={stage} note="Manager cant access Still at President Review Stage" text={`${targetUser.profile.firstName}'s Appraisal is in progress!`}/>
+            }
 
 
       }

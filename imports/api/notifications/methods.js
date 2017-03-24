@@ -2,6 +2,7 @@ import { Mongo } from 'meteor/mongo';
 import SimpleSchema from 'simpl-schema';
 
 import Notifications from "./notifications"
+import Appraisals from "../appraisals/appraisals.js"
 
 Meteor.methods({
   addNotification() {
@@ -177,7 +178,7 @@ Meteor.methods({
     });
   },
   addReview(id) {
-    console.log("jgfjhgjh")
+
     Meteor.users.upsert(id,
     {$set:{
 
@@ -209,7 +210,14 @@ Meteor.methods({
     });
   },
   managerComment(data,id) {
-
+    const user= Meteor.user()
+    Notifications.insert({
+      targetUser: id,
+      completedUser: user._id,
+      completedUserName: `${user.profile.firstName} ${user.profile.lastName}`,
+      added: new Date(),
+      stage: 9
+    })
     Meteor.users.upsert(id,
     {$set:{
         'currentAppraisal.comments.manager': data.managerComment,
@@ -221,11 +229,25 @@ Meteor.methods({
     });
   },
   presidentComment(data,id) {
+    const user= Meteor.user()
+    Notifications.insert({
+      targetUser: id,
+      completedUser: user._id,
+      completedUserName: `${user.profile.firstName} ${user.profile.lastName}`,
+      added: new Date(),
+      stage: 10
+    })
+    const targetUser = Meteor.users.findOne({_id: id})
+    const appraisal =targetUser.currentAppraisal
 
+    appraisal.completed = new Date()
+    appraisal.user = id
+    Appraisals.insert(appraisal)
     Meteor.users.upsert(id,
     {$set:{
         'currentAppraisal.comments.president': data.presidentComment,
-         stage: 11
+         stage: 11,
+
 
 
       }
