@@ -4,8 +4,9 @@ import ReviewIcon from '../animations/ReviewIcon.js'
 import Comment from './Comment.js'
 import Checkbox from 'material-ui/Checkbox';
 import { browserHistory } from 'react-router';
-
+import {averageScore} from '../../utilities/averageScore'
 import Button from '../button/Button.js'
+import pdfReview from '../../utilities/pdfReview.js'
 
 export default class ManagerReview extends React.Component {
   constructor(){
@@ -55,6 +56,9 @@ useComment(data){
   this.comment.setValue(this.state[data])
   )
 }
+printPdf(data){
+  pdfReview(data,"managerReview")
+}
 render(){
 
   const styles={
@@ -84,7 +88,6 @@ render(){
   const {manager ={}} = comments
   const {stage} = this.props
   const {targetUser} = this.props
-
   return(
     <div style={styles.wrapper}>
       <div style={{flex: '1'}}>
@@ -100,15 +103,15 @@ render(){
           <div style={{marginBottom: '15px',fontWeight: '500',color:'#585858' }}>{targetUser.profile.lastName}</div>
         </div>
         <div style={{flex: '1', display: 'flex', justifyContent: 'center',flexDirection: "column", fontSize: "14px", fontWeight: '700', color: '#585858',margin:"10px"}}>
-            <div>Self Assessment: <span style={{fontWeight: '700', color: "#007681"}}>4.2</span></div>
-           <Line style={{marginBottom: '10px'}} percent="76" trailWidth="2.5" strokeWidth="2.5" strokeColor="#6bada7" />
-           <div>Manager's Assessment: <span style={{fontWeight: '700', color: "#007681"}}>4.6</span></div>
-          <Line style={{marginBottom: '10px'}} percent="82" trailWidth="2.5" strokeWidth="2.5" strokeColor="#6bada7" />
+            <div>Self Assessment: <span style={{fontWeight: '700', color: "#007681"}}>{averageScore(targetUser.currentAppraisal,"employee")}</span></div>
+           <Line style={{marginBottom: '10px'}} percent={averageScore(targetUser.currentAppraisal,"employee",'percent')} trailWidth="2.5" strokeWidth="2.5" strokeColor="#6bada7" />
+           <div>Manager's Assessment: <span style={{fontWeight: '700', color: "#007681"}}>{averageScore(targetUser.currentAppraisal,"manager")}</span></div>
+          <Line style={{marginBottom: '10px'}} percent={averageScore(targetUser.currentAppraisal,"manager",'percent')} trailWidth="2.5" strokeWidth="2.5" strokeColor="#6bada7" />
         </div>
           <div style={{flex: '1',display: 'flex',flexDirection: 'column',justifyContent: "center", alignItems: "center",fontWeight: '500',color:'#585858'}}>
             <div style={{width: '60px'}}><ReviewIcon/></div>
             <div>{targetUser.profile.firstName}'s full appraisal is available to download.</div>
-            <Button  customMargin={{margin: "15px"}} type="button" >Click Here</Button>
+            <Button  customMargin={{margin: "15px"}} type="button" click={this.printPdf.bind(this, targetUser)}>Click Here</Button>
           </div>
       </div>
       <div style={{fontSize: "18px", fontWeight: '700', color: '#6bada7',padding:"10px"}}>

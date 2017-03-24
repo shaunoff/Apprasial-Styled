@@ -98,7 +98,7 @@ render(){
       if (stage > 3 && stage < 7) {
           return <InProgress stage={stage} note="Current user cant access. At managers phase" text="Your Appraisal is in progress!"/>
         }
-      if (stage > 8 && stage < 10) {
+      if (stage > 8 && stage < 11) {
             return <InProgress stage={stage} note="Current user cant access. At managers phase" text="Your Appraisal is in progress!"/>
           }
     }
@@ -110,19 +110,17 @@ render(){
         if (stage < 4) {
             return <InProgress stage={stage} note="Lead cant access Still at employee stage" text={`${targetUser.profile.firstName}'s Appraisal is in progress!`}/>
           }
-          if (stage > 6 && stage <9  ) {
-                return <InProgress stage={stage} note="Manager/Lead cant access Still at Employee stage" text={`${targetUser.profile.firstName}'s Appraisal is in progress!`}/>
+          if (stage > 6 && stage <11  ) {
+                return <InProgress stage={stage} note="Manager/Lead cant access " text={`${targetUser.profile.firstName}'s Appraisal is in progress!`}/>
               }
       }
       //Is user the manager
       if (targetUser.profile.manager == user._id) {
         managerAccess = true
-        if (stage > 3 && stage < 7) {
+        if (stage < 9 ) {
             return <InProgress stage={stage} note="Manager cant access Still at Lead stage" text={`${targetUser.profile.firstName}'s Appraisal is in progress!`}/>
           }
-          if (stage > 6 && stage <9  ) {
-                return <InProgress stage={stage} note="Manager/Lead cant access Still at Employee stage" text={`${targetUser.profile.firstName}'s Appraisal is in progress!`}/>
-              }
+
 
       }
 
@@ -132,11 +130,14 @@ render(){
       if (targetUser.profile.manager == user._id) {
         managerAccess = true
         if (stage < 4 ) {
-            return <InProgress stage={stage} note="Manager cant access Still at Employee stage" text={`${targetUser.profile.firstName}'s Appraisal is in progress!`}/>
+            return <InProgress stage={stage} note="Manager cant access, still at Employee stage" text={`${targetUser.profile.firstName}'s Appraisal is in progress!`}/>
           }
-        if (stage > 6 && stage <9 ) {
-              return <InProgress stage={stage} note="Manager/Lead cant access Still at Employee stage" text={`${targetUser.profile.firstName}'s Appraisal is in progress!`}/>
+        if (stage > 6 && stage <10 ) {
+              return <InProgress stage={stage} note="Manager cant access, still at Employee stage" text={`${targetUser.profile.firstName}'s Appraisal is in progress!`}/>
             }
+        if (stage == 11 ) {
+                  return <InProgress stage={stage} note="Manager cant access, still at President stage" text={`${targetUser.profile.firstName}'s Appraisal is in progress!`}/>
+                }
       }
     }
 
@@ -148,6 +149,9 @@ render(){
       :
       targetUser.stage == 7 || targetUser.stage == 8 ?
       <ProgressReview stage={targetUser.stage} targetUser={targetUser}/>
+      :
+      targetUser.stage == 9 || targetUser.stage == 10 ?
+      null
       :
       <Progress2Manager stage={targetUser.stage} targetUser={targetUser}/>
       }
