@@ -94,7 +94,7 @@ FindFromPublication.publish('leads', function() {
     });
 });
 FindFromPublication.publish('managerTeam', function(paramId) {
-  return Meteor.users.find({'profile.manager': paramId},{
+  return Meteor.users.find({ $or: [ {'profile.manager': paramId}, {'profile.lead': paramId} ]},{
     fields:{
       'profile': 1,
       'roles': 1,

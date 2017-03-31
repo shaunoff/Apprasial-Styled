@@ -85,12 +85,15 @@ function target(target, targetNumber) {
   doc.text(targetLines, 12, height+13)
 
 }
-function comment(comments) {
+function comment(comments,type) {
   //Rectangle
   doc.setDrawColor(204,	204, 204);
   doc.setLineWidth(0.6)
   doc.setFillColor(250, 250, 250);
   doc.roundedRect(10, height+5, 193, 31, 3, 3, 'FD');
+  doc.setTextColor(107,173,167).setFontSize(10).setFontType('bold')
+  type == "manager" ? doc.text(`${managerName} Wrote:`, 12, height+9) : doc.text(`Jan Guy Wrote:`, 12, height+9)
+
   doc.setTextColor(80, 80, 80).setFontSize(10).setFontType('normal')
   let targetLines = doc.splitTextToSize(comments, 190);
   doc.text(targetLines, 12, height+13)
@@ -275,9 +278,18 @@ if (type == "presidentReview" || type == "final"){
     height+=50
     doc.setTextColor(107,173,167).setFontSize(14).setFontType('bold')
     doc.text('Senior Manager Review', 10, height)
-    comment(comments.manager, "1")
+    comment(comments.manager, "manager")
     }
 
 }
+if ( type == "final"){
+
+    height+=50
+    doc.setTextColor(107,173,167).setFontSize(14).setFontType('bold')
+    doc.text("President's Comment", 10, height)
+    comment(comments.president)
+
+}
+
 doc.save(`${firstName}${lastName}Appraisal.pdf`)
 }

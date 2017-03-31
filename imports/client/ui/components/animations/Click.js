@@ -34,9 +34,9 @@ class Click extends React.Component {
      this.anim = this.addAnimation(firstAnimation,this)
    }
   render(){
-
+    const size = this.props.size || "30px"
     return(
-      <svg ref={(ref) => {this.hand = ref;}} xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" id="Layer_1" x="0px" y="0px" viewBox="0 0 449.406 449.406" style={{width: '30px',enableBackground:'new 0 0 449.406 449.406'}} xmlSpace="preserve" width="100px" height="100px">
+      <svg ref={(ref) => {this.hand = ref;}} xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" id="Layer_1" x="0px" y="0px" viewBox="0 0 449.406 449.406" style={{width: `${size}`,enableBackground:'new 0 0 449.406 449.406'}} xmlSpace="preserve" width="100px" height="100px">
       <g>
         <path ref={(ref) => {this.outer = ref;}} d="M83.703,141.5c0-61.481,50.019-111.5,111.5-111.5s111.5,50.019,111.5,111.5c0,7.208-0.709,14.473-2.107,21.596l29.438,5.78   c1.771-9.023,2.67-18.233,2.67-27.376c0-78.023-63.477-141.5-141.5-141.5s-141.5,63.477-141.5,141.5   c0,32.037,11.021,63.434,31.031,88.406l23.41-18.76C92.155,191.191,83.703,167.108,83.703,141.5z" fill="#6bada7"/>
         <path ref={(ref) => {this.inner = ref;}} d="M195.203,80c33.911,0,61.5,27.589,61.5,61.5h30c0-50.453-41.047-91.5-91.5-91.5s-91.5,41.047-91.5,91.5   c0,15.842,4.138,31.479,11.966,45.223l26.068-14.849c-5.256-9.227-8.034-19.73-8.034-30.374C133.703,107.589,161.292,80,195.203,80   z" fill="#6bada7"/>

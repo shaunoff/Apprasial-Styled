@@ -19,11 +19,25 @@ class RolesModal extends Component {
   updateRoles(role){
     if (this.state[role] == false){
       this.setState({[role]: true })
-      Meteor.call('addRole', role, this.props.user._id)
+      Meteor.call('addRole', role, this.props.user._id,(err,res)=>{
+        if (err){
+          console.log(err)
+        }
+        if (res){
+          console.log(res)
+        }
+      })
     }
     if (this.state[role] == true){
       this.setState({[role]: false })
-      Meteor.call('removeRole', role, this.props.user._id)
+      Meteor.call('removeRole', role, this.props.user._id,(err,res)=>{
+        if (err){
+          console.log(err)
+        }
+        if (res){
+          console.log(res)
+        }
+      })
     }
   }
   render() {

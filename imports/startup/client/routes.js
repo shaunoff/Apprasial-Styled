@@ -31,20 +31,16 @@ const requireAuth = (nextState,replace) => {
 Meteor.startup(() => {
   render(
     <Router history={browserHistory}>
-      <Route path="/" component={App} onEnter={requireAuth}>
-          <IndexRoute component={Home} />
-          <Route path="/appraisal/:_id" component={AppraisalWrapper}/>
-          <Route path="/new" component={Home}/>
-          <Route path="/team/:_id" component={Team}/>
-          <Route path="/google" component={Google}/>
-          <Route path="/users" component={UsersWrapper}/>*/}
+      <Route path="/" component={App} >
+          <IndexRoute component={Home} onEnter={requireAuth}/>
+          <Route path="/appraisal/:_id" component={AppraisalWrapper} onEnter={requireAuth}/>
+          <Route path="/new" component={Home} onEnter={requireAuth}/>
+          <Route path="/team/:_id" component={Team} onEnter={requireAuth}/>
+          <Route path="/google" component={Google} onEnter={requireAuth}/>
+          <Route path="/users" component={UsersWrapper} onEnter={requireAuth}/>
 
       </Route>
-      {/*<Route path="/" component={MainLayout} onEnter={requireAuth}>
-        <IndexRoute component={App} />
-        <Route path="/test" component={Test}/>
-          <Route path="/new" component={New}/>
-      </Route>*/}
+
       <Route path="/login" component={Login}/>
       <Route path="/google" component={Google}/>
     </Router>,

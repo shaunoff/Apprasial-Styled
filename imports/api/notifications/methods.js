@@ -16,10 +16,23 @@ Meteor.methods({
     return "some return value";
   },
   addRole(role,userId) {
-   Roles.addUsersToRoles( userId, role );
+   if(Roles.userIsInRole(this.userId, 'admin')){
+     Roles.addUsersToRoles( userId, role );
+     return "success"
+    }
+   else {
+     throw new Meteor.Error('Must be an admin!');
+   }
+
   },
   removeRole(role,userId) {
-   Roles.removeUsersFromRoles(userId, role);
+    if(Roles.userIsInRole(this.userId, 'admin')){
+      Roles.removeUsersFromRoles(userId, role);
+      return "success"
+    }
+   else {
+     throw new Meteor.Error('Must be an admin!');
+   }
   },
 
   assignManager(manager,userId){

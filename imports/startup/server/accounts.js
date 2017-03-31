@@ -19,7 +19,7 @@ Accounts.onCreateUser(function (options, user) {
             email: user.services.google.email,
             firstName: user.services.google.given_name,
             lastName: user.services.google.family_name,
-            
+
            }
           user['roles'] = ['employee']
           user['stage'] = 1
@@ -38,9 +38,4 @@ Accounts.onCreateUser(function (options, user) {
         return existingUser;                  // record is re-inserted
       }
       return user
-});
-
-Accounts.validateLoginAttempt(function() {
-   console.log('loggedIn')
-   return true
 });

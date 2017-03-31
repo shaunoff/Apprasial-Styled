@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import IsRole from '../../utilities/IsRole';
 
 export default class Sidebar extends Component {
 
 render() {
+  console.log(this.props)
     const {path} = this.props
     const {family_name,given_name, picture} = Meteor.user().services.google
     const inactive= {borderLeft: "6px solid #f8fafb", background:'#FFFFFF', display: 'flex', paddingTop: '15px', height: '40px', paddingBottom: '15px', flexDirection: 'row', width: '154px', alignItems: 'center'}
@@ -34,25 +36,24 @@ render() {
 
           <div style={{marginLeft:"10px", fontWeight: "500"}}><Link style={{ fontSize: "16px",textDecoration: 'none',color: "#007681" }} to={`/appraisal/${Meteor.userId()}`}>Appraisal</Link></div>
          </div>
-         <div style={path === '/test' ? active : inactive}>
 
-            <img style={{marginLeft: "15px", width: '25px'}} src="/icons/target.svg"/>
 
-          <div style={{marginLeft:"10px", fontWeight: "500"}}><Link style={{ fontSize: "16px",textDecoration: 'none',color: "#585858 " }} to='/test2'>Targets</Link></div>
-         </div>
-
-         <div style={{borderLeft: "12px solid #f8fafb",display: 'flex', marginTop: '15px', marginBottom: '15px', flexDirection: 'row', width: '160px',height: '40px', alignItems: 'center'}}>
+         <div style={path.includes("/team/") ? active : inactive}>
 
             <img style={{marginLeft: "15px", width: '25px'}} src="/icons/c_team.svg"/>
 
           <div style={{marginLeft:"10px", fontWeight: "500"}}><Link style={{ fontSize: "16px",textDecoration: 'none',color: "#585858 " }} to={`/team/${Meteor.userId()}`}>Your Team</Link></div>
          </div>
-         <div style={{borderLeft: "12px solid #f8fafb",display: 'flex', marginTop: '15px', marginBottom: '15px', flexDirection: 'row', width: '160px',height: '40px', alignItems: 'center'}}>
+         <IsRole role="admin" path={path}>
 
-            <img style={{marginLeft: "15px", width: '25px'}} src="/icons/admin.svg"/>
+             <div style={path === '/users' ? active : inactive}>
 
-          <div style={{marginLeft:"10px", fontWeight: "500"}}><Link style={{ fontSize: "16px",textDecoration: 'none',color: "#585858 " }} to='/users'>Admin</Link></div>
-         </div>
+                <img style={{marginLeft: "15px", width: '25px'}} src="/icons/admin.svg"/>
+
+              <div style={{marginLeft:"10px", fontWeight: "500"}}><Link style={{ fontSize: "16px",textDecoration: 'none',color: "#585858 " }} to='/users'>Admin</Link></div>
+             </div>
+           
+          </IsRole>
        </div>
 
 

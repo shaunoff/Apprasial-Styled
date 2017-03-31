@@ -26,6 +26,18 @@ class Google extends React.Component {
         }
       });
   }
+  testEmail(){
+
+    Meteor.call('testEmail',(err, res) => {
+        if(err) {
+          console.log('error')
+        }
+        if(!err) {
+          console.log(res)
+
+        }
+      });
+  }
   componentDidMount(){
     Meteor.call('directory',(err, res) => {
         if(err) {
@@ -43,11 +55,13 @@ class Google extends React.Component {
     if (this.props.google) {
       return (
         <div>
+          <div style={{fontSize: '30px'}} onClick={this.testEmail.bind(this)}>testEmail</div>
           <div onClick={this.handleClick.bind(this)}>click</div>
             {this.props.google.data && this.props.google.data.users.map((field,index)=>{
             return <div key={index}>{field.name.fullName}</div>
           })}
           <div onClick={this.noteTest.bind(this)}>fghfghjfdghjdfghjdfgshjfgdshj</div>
+
         </div>
       )
     }
