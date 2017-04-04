@@ -119,6 +119,7 @@ render(){
       }
       //Is user the manager
       if (targetUser.profile.manager == user._id) {
+
         managerAccess = true
         if (stage < 9 ) {
             return <InProgress stage={stage} note="Manager cant access Still at Lead stage" text={`${targetUser.profile.firstName}'s Appraisal is in progress!`}/>
@@ -132,6 +133,7 @@ render(){
 
     }
     //does the targetUser have no lead but a manager?
+
     if (targetUser.profile.lead == null){
       if (targetUser.profile.manager == user._id) {
         managerAccess = true

@@ -15,7 +15,9 @@ export default class CompletedAppraisals extends React.Component {
         display: 'flex',
         alignItems: 'center',
         margin: '10px',
-        border: '1px solid #ccc',
+        borderRight: '1px solid #ccc',
+        borderBottom: '1px solid #ccc',
+        borderTop: '1px solid #ccc',
         borderLeft: "6px solid #6bada7",
         height: '90px'
       },
@@ -39,7 +41,7 @@ export default class CompletedAppraisals extends React.Component {
     const appData = {}
     appData.currentAppraisal = appraisal
     appData.profile = user[0].profile
-    console.log(user)
+    
 
     return(
       <div style={styles.wrapper}>

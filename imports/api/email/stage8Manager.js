@@ -3,10 +3,10 @@ import { Email } from 'meteor/email'
 
 
 
-export default function stage3Complete(target,appraisor) {
+export default function stage8Manager(manager,target) {
   const targetName = `${target.firstName} ${target.lastName}`
-  const appraisorName = `${appraisor.firstName} ${appraisor.lastName}`
-  const appraisorEmail = appraisor.email
+  const managerName = `${manager.firstName} ${manager.lastName}`
+  const managerEmail = manager.email
 
   const htmlOutput = mjml2html(`
       <mjml>
@@ -23,12 +23,12 @@ export default function stage3Complete(target,appraisor) {
       <mj-section background-color="white" border="2px solid #ccc" border-radius="6px" padding-bottom="0" padding-top="0">
         <mj-column width="100%">
           <mj-text align="center" font-size="24" color="rgb(88, 88, 88)" font-weight="700" font-family="Verdana, Geneva, sans-serif" padding-left="25" padding-right="25" padding-bottom="15" padding-top="20">
-            Hello, ${appraisor.firstName}
+            Hello, ${manager.firstName}
           </mj-text>
           <mj-image src="https://www.p3i-inc.com/wp-content/uploads/2017/03/appraisal-background.png" alt="" align="center" border="none" width="400" vertical-align="middle" padding-left="15" padding-right="15" padding-bottom="5" padding-top="5">
           </mj-image>
           <mj-text align="center" font-size="18" color="rgb(88, 88, 88)" font-weight="700" font-family="Verdana, Geneva, sans-serif" padding-left="25" padding-right="25" padding-bottom="15" padding-top="20">
-            ${targetName} has completed his/her appraisal self assessment. You are now required to complete your section.
+            ${targetName} has completed his/her Appraisal ready for your review. You are now required to read through the appraisal and submit a Manager's summary.
           </mj-text>
           <mj-button background-color="#6bada7" color="#FFF" font-size="18px" align="center" font-weight="bold" border="none" padding="15px 30px" border-radius="10px" href="https://mjml.io" "Verdana, Geneva, sans-serif" padding-left="25" padding-right="25" padding-bottom="25"
             padding-top="10">
@@ -52,9 +52,9 @@ export default function stage3Complete(target,appraisor) {
 `)
 
     Email.send({
-  to: `${appraisorName} <${appraisorEmail}>`,
+  to: `${managerName} <${managerEmail}>`,
   from: "P3I Appraisals <shutch@p3i-inc.com>",
-  subject: `${targetName} has completed his/her appraisal Self-Assessment` ,
+  subject: `${targetName} has completed his/her Appraisal` ,
   html: htmlOutput.html
 });
 

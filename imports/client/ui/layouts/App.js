@@ -27,7 +27,6 @@ class App extends Component {
     }
   }
   componentDidMount(){
-    console.log(window.innerHeight)
     this.setState({
       width:window.innerWidth,
       height:window.innerHeight,

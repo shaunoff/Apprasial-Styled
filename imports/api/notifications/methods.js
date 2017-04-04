@@ -4,6 +4,8 @@ import SimpleSchema from 'simpl-schema';
 import Notifications from "./notifications"
 import Appraisals from "../appraisals/appraisals.js"
 import stage3Complete from "../email/stage3Complete.js"
+import stage6Complete from "../email/stage6Complete.js"
+import stage8Manager from "../email/stage8Manager.js"
 
 Meteor.methods({
   addNotification() {
@@ -171,18 +173,19 @@ Meteor.methods({
       added: new Date(),
       stage: 3
     })
-    /*Meteor.users.upsert(targetId,
+    Meteor.users.upsert(targetId,
     {$set:{
         'currentAppraisal.summary.employee': data,
         stage: 4
 
       }
 
-    });*/
+    });
   },
   insertManSummary(data,targetId) {
     const user= Meteor.user()
-    console.log(user)
+    const targetUser = Meteor.users.findOne({_id: targetId})
+    stage6Complete(user.profile, targetUser.profile)
     Notifications.insert({
       targetUser: targetId,
       completedUser: user._id,
@@ -215,6 +218,14 @@ Meteor.methods({
   insertTargets(data,id) {
     const user= Meteor.user()
     const stageJump = user.currentAppraisal.lead === null ? 10 : 9
+
+    if (stageJump == 9){
+      let manager = Meteor.users.findOne({_id: user.currentAppraisal.manager})
+      stage8Manager(manager.profile, user.profile)
+    }
+    if (stageJump == 10){
+      console.log('president')
+    }
     Notifications.insert({
       targetUser: id,
       completedUser: user._id,

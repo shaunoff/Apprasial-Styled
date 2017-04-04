@@ -84,7 +84,7 @@ render(){
   const {employee = {}, manager ={}} = competencies
   const {managerAccess} = this.props
   let {stage} = this.props
-
+  console.log(managerAccess)
   return(
 
     <div ref={(ref) => {this.manCompWrapper = ref}} style={{position:  'absolute', display: 'flex', overflow: 'scroll',height: "calc(100vh - 95px)",flexDirection: 'column',margin: '15px',width: "calc(100vw - 380px)", display: 'flex',border: "2px solid #ccc", borderRadius: '8px',background: "white"}}>
