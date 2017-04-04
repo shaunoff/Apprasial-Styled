@@ -5,7 +5,7 @@ import IsRole from '../../utilities/IsRole';
 export default class Sidebar extends Component {
 
 render() {
-  console.log(this.props)
+  
     const {path} = this.props
     const {family_name,given_name, picture} = Meteor.user().services.google
     const inactive= {borderLeft: "6px solid #f8fafb", background:'#FFFFFF', display: 'flex', paddingTop: '15px', height: '40px', paddingBottom: '15px', flexDirection: 'row', width: '154px', alignItems: 'center'}
@@ -52,7 +52,7 @@ render() {
 
               <div style={{marginLeft:"10px", fontWeight: "500"}}><Link style={{ fontSize: "16px",textDecoration: 'none',color: "#585858 " }} to='/users'>Admin</Link></div>
              </div>
-           
+
           </IsRole>
        </div>
 

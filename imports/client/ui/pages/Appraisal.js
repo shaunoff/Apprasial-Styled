@@ -89,11 +89,12 @@ render(){
     targetUser = targetUser[0]
     user = user[0]
     const {stage} = this.state
-    //Is targetUser the currentUser?
+    // is user President?
     if (Roles.userIsInRole(Meteor.userId(), 'President')){
       managerAccess = false
       return <ReactTransitionGroup>{this.stageNumber(managerAccess,targetUser)}</ReactTransitionGroup>
     }
+    //Is targetUser the currentUser?
     if (targetUser._id == user._id) {
       managerAccess = false
       if (stage > 3 && stage < 7) {

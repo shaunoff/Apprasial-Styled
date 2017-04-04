@@ -80,7 +80,7 @@ export default class HomeProgress extends React.Component {
     const {stage} = this.props
     let section ="none"
     stage < 4 ? section = 1 : stage > 3 && stage < 7 ? section = 2 : stage > 6 && stage < 9 ? section = 3 : stage > 8 && stage < 11 ? section = 4 : section= 5
-    console.log(section)
+    
     return(
     <div style={{display: 'flex'}}>
       <div style={styles.section}>

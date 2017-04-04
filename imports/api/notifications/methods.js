@@ -3,6 +3,7 @@ import SimpleSchema from 'simpl-schema';
 
 import Notifications from "./notifications"
 import Appraisals from "../appraisals/appraisals.js"
+import stage3Complete from "../email/stage3Complete.js"
 
 Meteor.methods({
   addNotification() {
@@ -153,7 +154,16 @@ Meteor.methods({
   },
   insertSummary(data, targetId) {
     const user= Meteor.user()
-    console.log(user)
+
+    let appraisor = null;
+    if (user.currentAppraisal.lead){
+      appraisor = Meteor.users.findOne({_id: user.currentAppraisal.lead})
+    }
+    else {
+      appraisor = Meteor.users.findOne({_id: user.currentAppraisal.manager})
+    }
+
+    stage3Complete(user.profile, appraisor.profile)
     Notifications.insert({
       targetUser: targetId,
       completedUser: user._id,
@@ -161,14 +171,14 @@ Meteor.methods({
       added: new Date(),
       stage: 3
     })
-    Meteor.users.upsert(targetId,
+    /*Meteor.users.upsert(targetId,
     {$set:{
         'currentAppraisal.summary.employee': data,
         stage: 4
 
       }
 
-    });
+    });*/
   },
   insertManSummary(data,targetId) {
     const user= Meteor.user()
