@@ -2,7 +2,31 @@ import { Meteor } from 'meteor/meteor';
 import Appraisals from '../appraisals/appraisals.js'
 
 FindFromPublication.publish('currentUserAppraisals', function() {
-  return Appraisals.find({});
+  return Appraisals.find({user: this.userId});
+});
+FindFromPublication.publish('presidentUsers', function() {
+
+
+
+  let president =  Roles.userIsInRole( this.userId, 'President')
+  if (president){
+  return Meteor.users.find({ stage: { $eq: 10 } },{
+    fields:{
+      'services.google.picture': 1,
+      'services.google.given_name': 1,
+      'services.google.family_name': 1,
+      'competencies': 1,
+      'questions': 1,
+      'summary': 1,
+      'stage': 1,
+      'profile': 1,
+      'currentAppraisal': 1,
+      'roles': 1
+    },
+    limit: 10,
+
+    });
+  }
 });
 FindFromPublication.publish('allUsers', function(skipAmount, sortValue, direction,searchQuery) {
 
@@ -12,7 +36,7 @@ FindFromPublication.publish('allUsers', function(skipAmount, sortValue, directio
   if (searchQuery != null){
     query = {'profile.lastName': regex}
   }
-  let adminUser =  Roles.userIsInRole( this.userId, 'admin')
+  let adminUser =  Roles.userIsInRole( this.userId, ['admin','President'])
   if (adminUser){
   return Meteor.users.find(query,{
     fields:{

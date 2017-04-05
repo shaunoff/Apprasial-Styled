@@ -6,6 +6,8 @@ import Appraisals from "../appraisals/appraisals.js"
 import stage3Complete from "../email/stage3Complete.js"
 import stage6Complete from "../email/stage6Complete.js"
 import stage8Manager from "../email/stage8Manager.js"
+import president from "../email/president.js"
+import complete from "../email/complete.js"
 
 Meteor.methods({
   addNotification() {
@@ -224,7 +226,7 @@ Meteor.methods({
       stage8Manager(manager.profile, user.profile)
     }
     if (stageJump == 10){
-      console.log('president')
+        president(user.profile)
     }
     Notifications.insert({
       targetUser: id,
@@ -245,6 +247,8 @@ Meteor.methods({
   },
   managerComment(data,id) {
     const user= Meteor.user()
+    const targetUser = Meteor.users.findOne({_id: id})
+    president(targetUser.profile)
     Notifications.insert({
       targetUser: id,
       completedUser: user._id,
@@ -264,6 +268,8 @@ Meteor.methods({
   },
   presidentComment(data,id) {
     const user= Meteor.user()
+    const targetUser = Meteor.users.findOne({_id: id})
+    complete(targetUser.profile)
     Notifications.insert({
       targetUser: id,
       completedUser: user._id,
@@ -271,7 +277,7 @@ Meteor.methods({
       added: new Date(),
       stage: 10
     })
-    const targetUser = Meteor.users.findOne({_id: id})
+
     const appraisal =targetUser.currentAppraisal
 
     appraisal.completed = new Date()

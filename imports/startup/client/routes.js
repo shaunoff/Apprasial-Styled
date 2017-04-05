@@ -9,6 +9,7 @@ import { render } from 'react-dom';
 
 import App from '../../client/ui/layouts/App.js';
 import Home from '../../client/ui/pages/Home';
+import President from '../../client/ui/pages/President';
 import Login from '../../client/ui/pages/Login';
 import AppraisalWrapper from '../../client/ui/pages/AppraisalWrapper.js';
 import Team from '../../client/ui/pages/Team.js';
@@ -38,7 +39,7 @@ Meteor.startup(() => {
           <Route path="/team/:_id" component={Team} onEnter={requireAuth}/>
           <Route path="/google" component={Google} onEnter={requireAuth}/>
           <Route path="/users" component={UsersWrapper} onEnter={requireAuth}/>
-
+          <Route path="/president" component={President} onEnter={requireAuth}/>
       </Route>
 
       <Route path="/login" component={Login}/>
