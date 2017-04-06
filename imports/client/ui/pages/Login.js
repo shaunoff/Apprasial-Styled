@@ -45,6 +45,7 @@ import {StyleRoot} from 'radium';
       return (
         <StyleRoot>
           <main style={{height: '100vh',display: 'flex',flexDirection:'column', justifyContent: 'center', alignItems: "center"}}>
+            <LoginButtons/>
             <img ref={(ref)=>{this.image = ref}} style={{width: '300px',marginBottom: '30px'}} src="/master.png"/>
             <img ref={(ref)=>{this.image2 = ref}} style={{width: '400px'}} src="/appraisal.png"/>
             <div ref={(ref)=>{this.appraisal = ref}} style={{fontSize: '40px',color: '#6bada7', marginBottom: '30px'}}>Appraisals</div>
