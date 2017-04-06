@@ -19,6 +19,7 @@ import UsersWrapper from '../../client/ui/pages/UsersWrapper';
 import Test1 from '../../client/ui/pages/Test1.js';
 import Test2 from '../../client/ui/pages/Test2.js';
 
+
 const requireAuth = (nextState,replace) => {
   if (!Meteor.loggingIn() && !Meteor.userId()){
     replace({

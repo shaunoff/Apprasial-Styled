@@ -12,7 +12,11 @@ import {StyleRoot} from 'radium';
      console.log("gfhjfgjdhfgjh")
    }
   googleLogin() {
-    Meteor.loginWithGoogle((error) =>{
+    Meteor.loginWithGoogle(
+      {requestPermissions:
+          ['https://www.googleapis.com/auth/admin.directory.user.readonly','https://www.googleapis.com/auth/userinfo.email']
+        
+    },(error) =>{
      console.log(error)
     });
 
