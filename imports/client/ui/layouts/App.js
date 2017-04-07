@@ -39,12 +39,13 @@ class App extends Component {
     if (this.props.subsReady) {
       currentId.set(this.props.currentUser[0]._id)
       const path = this.props.location.pathname
+      console.log(path)
       return  <StyleRoot>
                 <MuiThemeProvider>
                   <div style={{display:'-webkit-flex',display: 'flex', width: `${this.state.width - 2}px`, height: this.state.height,background: '#F8FAFB'}}>
                     <Sidebar path={path}/>
                     <div style={{flex: '1', display: 'flex', flexDirection: 'column'}}>
-                      <Header />
+                      <Header title={path}/>
                       <div style={{display: 'flex',flex: '1'}}>
                         <ReactTransitionGroup>
                           {React.cloneElement(this.props.children, {key: path, user: this.props.currentUser, notifications: this.props.notifications, appraisals: this.props.currentUserAppraisals})}

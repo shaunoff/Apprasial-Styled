@@ -41,7 +41,7 @@ Meteor.methods({
       const users = result.data.users
 
       users.map((user,index)=>{
-        const exists = Meteor.users.findOne({email: user.primaryEmail});
+        const exists = Meteor.users.findOne({'profile.email': user.primaryEmail});
         if ( !exists ) {
         Meteor.users.insert({
           profile: {
