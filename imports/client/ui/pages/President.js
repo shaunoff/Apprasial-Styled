@@ -98,7 +98,9 @@ class President extends React.Component {
 
     }
     if (!this.props.subsReady){
+      console.log(this.props)
       return <div> loading</div>
+
     }
       const {users} = this.props
       console.log(users)
@@ -167,10 +169,7 @@ class President extends React.Component {
 
 
 }
-const skipAmount = new ReactiveVar(0);
-const sortValue = new ReactiveVar('lastName');
-const sortDirection = new ReactiveVar(1);
-const searchQuery = new ReactiveVar(null);
+
 export default createContainer(({params}) => {
 
     let allUsersSub =  Meteor.subscribe('presidentUsers');
